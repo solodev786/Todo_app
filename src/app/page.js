@@ -48,10 +48,12 @@ export default function Home() {
         return (
           <div
             key={index}
-            className=" flex items-start justify-between px-5 py-5 w-full border border-slate-300"
+            className=" flex items-start justify-between px-5 py-5 w-full border border-slate-600"
           >
             <div className=" flex flex-col gap-1">
-              <h1 className="text-2xl font-semibold text-blue-900 uppercase">{items.topic}</h1>
+              <h1 className="text-2xl font-semibold text-blue-900 uppercase">
+                {items.topic}
+              </h1>
               <h1 className=" md:w-2/3">{items.description}</h1>
             </div>
             <div className=" flex gap-2 items-center">
