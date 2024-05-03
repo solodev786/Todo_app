@@ -21,6 +21,13 @@ export const POST = async (request) => {
   const { topic, description } = await request.json();
   await connectToMongoDB();
   try {
+    const isAlreadyExist = await Topic.findOne({ topic: topic });
+    if (isAlreadyExist) {
+      return NextResponse.json(
+        "you can't add this item. this is already saved in the database",
+        { status: 500 }
+      );
+    }
     const response = await Topic.create({ topic, description });
     return NextResponse.json(response, { status: 201 });
   } catch (error) {

@@ -46,18 +46,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=" w-full flex flex-col gap-5">
+    <div className=" w-full flex flex-col gap-5 min-h-screen">
       {topics.map((items, index) => {
         return (
           <div
             key={index}
-            className=" flex items-start justify-between px-5 py-5 w-full border border-slate-600"
+            className=" flex items-start justify-between px-5 py-5 w-full border-b border-slate-600"
           >
             <div className=" flex flex-col gap-1">
-              <h1 className="text-2xl font-semibold text-blue-900 uppercase">
+              <h1 className="text-2xl font-semibold text-sky-600 uppercase">
                 {items.topic}
               </h1>
-              <h1 className=" md:w-2/3">{items.description}</h1>
+              <h1 className=" md:w-2/3 text-gray-400">{items.description}</h1>
             </div>
             <div className=" flex gap-2 items-center">
               <IoTrashBin
@@ -68,7 +68,7 @@ export default function Home() {
                 className=" text-red-500 text-3xl"
               />
               <Link href={`/editTopic/${items._id}`}>
-                <FaEdit className=" text-3xl" />
+                <FaEdit className=" text-3xl text-gray-400" />
               </Link>
             </div>
           </div>

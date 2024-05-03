@@ -10,6 +10,8 @@ function Page({ params }) {
   const [topic, setPrevTopic] = useState("");
   const [description, setDesc] = useState("");
 
+  const inputRef = useRef();
+
   const getTopicById = async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/topic/${params.id}`);
@@ -44,25 +46,27 @@ function Page({ params }) {
 
   useEffect(() => {
     getTopicById();
+    inputRef.current.focus();
   }, [getTopicById]);
   return (
-    <div>
+    <div className=" min-h-screen">
       <form onSubmit={updateTask} className=" flex flex-col gap-3">
         <input
+          ref={inputRef}
           onChange={(e) => setPrevTopic(e.target.value)}
           value={topic}
           type="text"
           placeholder="edit topic"
-          className=" px-5 w-1/2 h-12 border border-slate-500"
+          className=" px-5 w-1/2 h-12  bg-slate-700 text-white"
         />
         <input
           onChange={(e) => setDesc(e.target.value)}
           value={description}
           type="text"
           placeholder="Edit topic description"
-          className=" px-5 w-2/3 h-12 border border-slate-500"
+          className=" px-5 w-2/3 h-12 bg-slate-700 text-white"
         />
-        <button type="submit" className=" w-32 bg-slate-800 text-white py-3">
+        <button type="submit" className=" w-32  py-3 bg-slate-700 text-white">
           Edit task
         </button>
       </form>

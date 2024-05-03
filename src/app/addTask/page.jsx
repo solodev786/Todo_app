@@ -28,7 +28,10 @@ function Page() {
         router.push("/");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
+      if (error.response.status === 500) {
+        alert("You can't add this item. because its already save");
+      }
     }
   };
 
@@ -36,22 +39,22 @@ function Page() {
     inputRef.current.focus();
   }, []);
   return (
-    <div>
+    <div className=" min-h-screen">
       <form onSubmit={addNewTopic} className=" flex flex-col gap-3">
         <input
           onChange={(e) => setTopic(e.target.value)}
           ref={inputRef}
           type="text"
           placeholder="Add new topic"
-          className=" px-5 w-1/2 h-12 border border-slate-500"
+          className=" px-5 w-1/2 h-12 bg-slate-700 text-white"
         />
         <input
           onChange={(e) => setDescription(e.target.value)}
           type="text"
           placeholder="Topic description"
-          className=" px-5 w-2/3 h-12 border border-slate-500"
+          className=" px-5 w-2/3 h-12 bg-slate-700 text-white"
         />
-        <button type="submit" className=" w-32 bg-slate-800 text-white py-3">
+        <button type="submit" className=" w-32 bg-slate-700 text-white py-3">
           Add task
         </button>
       </form>
