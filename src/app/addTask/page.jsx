@@ -15,7 +15,7 @@ function Page() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/topic", {
+      const response = await axios.post("/api/topic", {
         topic,
         description,
       });

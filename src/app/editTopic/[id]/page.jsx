@@ -13,7 +13,7 @@ function Page({ params }) {
   const getTopicById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/topic/${params.id}`
+        `/api/topic/${params.id}`
       );
       if (response.status === 200) {
         setPrevTopic(response.data.topic);
@@ -29,7 +29,7 @@ function Page({ params }) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/topic/${params.id}`,
+        `/api/topic/${params.id}`,
         { topic, description }
       );
       if (response.status === 200) {
