@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-function page({ params }) {
+function Page({ params }) {
   const router = useRouter();
 
   const [topic, setPrevTopic] = useState("");
@@ -13,7 +13,7 @@ function page({ params }) {
   const getTopicById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/topic/${params.id}`
+        `http://localhost:3000/api/topic/${params.id}`
       );
       if (response.status === 200) {
         setPrevTopic(response.data.topic);
@@ -29,7 +29,7 @@ function page({ params }) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/topic/${params.id}`,
+        `http://localhost:3000/api/topic/${params.id}`,
         { topic, description }
       );
       if (response.status === 200) {
@@ -43,7 +43,7 @@ function page({ params }) {
 
   useEffect(() => {
     getTopicById();
-  }, []);
+  }, [getTopicById]);
   return (
     <div>
       <form onSubmit={updateTask} className=" flex flex-col gap-3">
@@ -69,4 +69,4 @@ function page({ params }) {
   );
 }
 
-export default page;
+export default Page;

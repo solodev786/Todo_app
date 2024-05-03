@@ -14,7 +14,7 @@ export default function Home() {
 
   const getTopics = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/topic");
+      const response = await axios.get("http://localhost:3000/api/topic");
       if (response.status === 200) {
         setTopics(response.data);
         console.log(response.data);
@@ -27,7 +27,7 @@ export default function Home() {
   const deleteTask = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/api/topic/${id}`
+        `http://localhost:3000/api/topic/${id}`
       );
       if (response.status === 200) {
         console.log(response.data);

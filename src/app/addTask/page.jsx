@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-function page() {
+function Page() {
   const router = useRouter();
   const inputRef = useRef(null);
 
@@ -15,7 +15,7 @@ function page() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/api/topic", {
+      const response = await axios.post("http://localhost:3000/api/topic", {
         topic,
         description,
       });
@@ -55,4 +55,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
