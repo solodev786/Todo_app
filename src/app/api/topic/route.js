@@ -5,12 +5,16 @@ import { NextResponse } from "next/server";
 
 export const GET = async () => {
   await connectToMongoDB();
-  const response = await Topic.find();
-  if (!response) {
-    console.log("there is no topic");
-    return NextResponse.json("there is no response added");
+  try {
+    const response = await Topic.find();
+    if (!response) {
+      console.log("there is no topic");
+      return NextResponse.json("there is no response added");
+    }
+    return NextResponse.json(response, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(error);
   }
-  return NextResponse.json(response, { status: 200 });
 };
 
 export const POST = async (request) => {

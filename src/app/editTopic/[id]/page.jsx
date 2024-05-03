@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
-
+import { apiUrl } from "@/constants";
 function Page({ params }) {
   const router = useRouter();
 
@@ -12,9 +12,7 @@ function Page({ params }) {
 
   const getTopicById = async () => {
     try {
-      const response = await axios.get(
-        `/api/topic/${params.id}`
-      );
+      const response = await axios.get(`${apiUrl}/api/topic/${params.id}`);
       if (response.status === 200) {
         setPrevTopic(response.data.topic);
         setDesc(response.data.description);
@@ -29,8 +27,11 @@ function Page({ params }) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `/api/topic/${params.id}`,
-        { topic, description }
+        `${process.env.NEXT_PUBLIC_API_URL}/api/topic/${params.id}`,
+        {
+          topic,
+          description,
+        }
       );
       if (response.status === 200) {
         console.log(response.data);

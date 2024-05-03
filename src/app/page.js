@@ -7,6 +7,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/constants";
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +15,9 @@ export default function Home() {
 
   const getTopics = async () => {
     try {
-      const response = await axios.get("/api/topic");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/topic`
+      );
       if (response.status === 200) {
         setTopics(response.data);
         console.log(response.data);
@@ -26,7 +29,9 @@ export default function Home() {
 
   const deleteTask = async (id) => {
     try {
-      const response = await axios.delete(`/api/topic/${id}`);
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/topic/${id}`
+      );
       if (response.status === 200) {
         console.log(response.data);
         getTopics();

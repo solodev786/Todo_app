@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/constants";
 
 function Page() {
   const router = useRouter();
@@ -15,10 +16,13 @@ function Page() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/topic", {
-        topic,
-        description,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/topic`,
+        {
+          topic,
+          description,
+        }
+      );
       if (response.status === 201) {
         console.log(response.data);
         router.push("/");
