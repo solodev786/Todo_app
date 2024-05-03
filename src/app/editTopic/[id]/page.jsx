@@ -46,13 +46,11 @@ function Page({ params }) {
 
   useEffect(() => {
     getTopicById();
-    inputRef.current.focus();
-  }, [getTopicById]);
+  }, []);
   return (
     <div className=" min-h-screen">
       <form onSubmit={updateTask} className=" flex flex-col gap-3">
         <input
-          ref={inputRef}
           onChange={(e) => setPrevTopic(e.target.value)}
           value={topic}
           type="text"
